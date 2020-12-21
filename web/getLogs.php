@@ -1,0 +1,25 @@
+<?php
+function bitsToMbitsFloat($bitsAsString)
+{
+    return round(($bitsAsString) / 1024 / 1024, 2);
+}
+
+$events = require __DIR__ . '/../logs/aggregateLog.php';
+
+$time = $upload = $download = $ping = [];
+foreach ($events as $event) {
+    $upload[] = bitsToMbitsFloat($event['upload']);
+    $download[] = bitsToMbitsFloat($event['download']);
+    $ping[] = $event['ping'];
+    $time[] = $event['timestamp'];
+}
+
+header('Content-Type: text/javascript');
+echo json_encode(
+    [
+        'x' => $time,
+        'download' => $download,
+        'upload' => $upload,
+        'ping' => $ping
+    ]
+);
