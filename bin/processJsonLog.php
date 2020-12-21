@@ -34,6 +34,7 @@ $event['timestamp'] = $dateTime->modify('+ 1 hour')->format(
 $index = sprintf("%s.%sZ", $dateTime->getTimestamp(), $dateTime->format('u'));
 $aggregate[$index] = $event;
 asort($aggregate);
+file_put_contents($aggregateLog, sprintf('<?php return %s;', var_export($aggregate, true)));
 
 $textLogEntryLines = [];
 $textLogEntryLines[] = $dateTime->format('Y-m-d H:i:s');
@@ -55,4 +56,3 @@ foreach (array_reverse($textLogEntryLines) as $line) {
 file_put_contents($textLog, implode('', $textLogLines));
 
 echo sprintf("Processed event %s\n", $event['timestamp']);
-file_put_contents($aggregateLog, sprintf('<?php return %s;', var_export($aggregate, true)));

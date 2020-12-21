@@ -16,9 +16,11 @@
     </style>
 </head>
 <body>
+<a href="stats.php">Stats</a>
 <div id="chart"></div>
 <script type="application/javascript">
     const speedChart = new SpeedChart('#chart', 'getLogs.php');
+    window.setInterval(() => speedChart.update(), 60 * 1000);
 </script>
 </body>
 </html>
