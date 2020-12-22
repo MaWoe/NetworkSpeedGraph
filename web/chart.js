@@ -10,7 +10,7 @@ class SpeedChart {
             url: dataUrl,
             mimeType: 'json',
             axes: {
-               ping: 'y2'
+                ping: 'y2'
             }
         };
 
@@ -31,11 +31,34 @@ class SpeedChart {
             },
             subchart: {
                 show: true
-            },
+            }
         });
+
+        const zoomInterval = window.setInterval(() => {
+            if (this.trySetZoom()) {
+                window.clearInterval(zoomInterval);
+            }
+        }, 300)
+
+    }
+
+    trySetZoom() {
+        const startDateTime = new Date();
+        const dayOffset = startDateTime.getDate() - 2;
+        startDateTime.setDate(dayOffset);
+
+        const endDateTime = new Date();
+
+        if (this.chart.data()) {
+            this.chart.zoom([startDateTime, endDateTime]);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     update() {
         this.chart.load(this.dataConfig);
+        this.trySetZoom();
     }
 }
