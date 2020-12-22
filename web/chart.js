@@ -25,9 +25,15 @@ class SpeedChart {
                     },
                     extent: 100
                 },
+                y: {
+                    min: 10,
+                    max: 110,
+                },
                 y2: {
+                    min: 20,
+                    max: 200,
                     show: true
-                }
+                },
             },
             subchart: {
                 show: true
