@@ -20,7 +20,7 @@
 <div id="chart"></div>
 <script type="application/javascript">
     const speedChart = new SpeedChart('#chart', 'getLogs.php');
-    window.setInterval(() => speedChart.update(), 60 * 1000);
+    window.setInterval(() => document.location.reload(), 60 * 1000);
 </script>
 </body>
 </html>

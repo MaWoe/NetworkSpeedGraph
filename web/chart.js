@@ -10,7 +10,9 @@ class SpeedChart {
             url: dataUrl,
             mimeType: 'json',
             axes: {
-                ping: 'y2'
+                ping: 'y',
+                upload: 'y2',
+                download: 'y2'
             }
         };
 
@@ -26,12 +28,13 @@ class SpeedChart {
                     extent: 100
                 },
                 y: {
-                    min: 10,
-                    max: 110,
-                },
-                y2: {
                     min: 20,
                     max: 200,
+                    show: true
+                },
+                y2: {
+                    min: 10,
+                    max: 110,
                     show: true
                 },
             },
@@ -65,6 +68,6 @@ class SpeedChart {
 
     update() {
         this.chart.load(this.dataConfig);
-        this.trySetZoom();
+//        this.trySetZoom();
     }
 }
