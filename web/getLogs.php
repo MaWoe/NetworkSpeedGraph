@@ -11,7 +11,7 @@ $now = time();
 $maxAge = 60 * 60 * 24 * 10; // 10 days
 foreach ($events as $event) {
     $timestamp = $event['timestamp'];
-    if ($now - (new DateTime())->getTimestamp() > $maxAge) {
+    if ($now - (new DateTime($timestamp))->getTimestamp() > $maxAge) {
         continue;
     }
     $upload[] = bitsToMbitsFloat($event['upload']);
